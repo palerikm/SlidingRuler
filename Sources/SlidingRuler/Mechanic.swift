@@ -26,7 +26,7 @@
 //  SOFTWARE.
 //
 
-import UIKit.UIScrollView
+import UIKit
 import CoreGraphics
 
 enum Mechanic {
