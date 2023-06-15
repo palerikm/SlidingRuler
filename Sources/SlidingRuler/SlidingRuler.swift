@@ -150,7 +150,7 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
             ZStack(alignment: .init(horizontal: .center, vertical: self.verticalCursorAlignment)) {
                 Ruler(cells: self.cells, step: self.step, markOffset: self.markOffset, bounds: self.bounds, formatter: self.formatter)
                     .equatable()
-                    //.animation(nil)
+                   // .animation(nil)
                     .modifier(InfiniteOffsetEffect(offset: renderedOffset, maxOffset: self.cellWidthOverflow))
                 self.style.makeCursorBody()
             }
@@ -161,9 +161,9 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
         .onPreferenceChange(ControlWidthPreferenceKey.self, storeValueIn: $controlWidth) {
             self.updateCellsIfNeeded()
         }
-        .transaction {
-            if $0.animation != nil { $0.animation = .easeIn(duration: 0.1) }
-        }
+        //.transaction {
+        //    if $0.animation != nil { $0.animation = .easeIn(duration: 0.1) }
+        //}
         .onHorizontalDragGesture(initialTouch: firstTouchHappened,
                                  prematureEnd: panGestureEndedPrematurely,
                                  perform: horizontalDragAction(withValue:))
@@ -379,7 +379,7 @@ extension SlidingRuler {
 }
 
 extension UIScrollView.DecelerationRate {
-    static var ruler: Self { Self.init(rawValue: 0.9972) }
+    static var ruler: Self { .fast }
 }
 
 // MARK: Mechanic Simulation
